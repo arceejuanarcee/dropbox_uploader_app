@@ -8,6 +8,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import streamlit as st
+
+try:
+    with open("build.log", "r") as f:
+        st.code(f.read(), language="bash")
+except Exception as e:
+    st.warning(f"Could not read build.log: {e}")
+
+
 REQUEST_LINK = "https://www.dropbox.com/request/tydarVR6Ty4qZEwGGTPd"
 
 def upload_with_selenium(url: str, filepath: str, name: str, email: str):
